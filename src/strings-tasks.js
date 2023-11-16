@@ -66,21 +66,7 @@ const invertCase = (str) =>
 const getStringFromTemplate = (firstName, lastName) =>
   `Hello, ${firstName} ${lastName}!`;
 const extractNameFromTemplate = (str) => str.replace(/Hello, |!/g, '');
-
-/**
- * Remove the first and last angle brackets from tag string
- *
- * @param {string} str - The input tag.
- * @return {string} - The tag without the first and last angle brackets.
- *
- * @example
- *   unbracketTag('<div>') => 'div'
- *   unbracketTag('<span>') => 'span'
- *   unbracketTag('<a>') => 'a'
- */
-const unbracketTag = (/* str */) => {
-  throw new Error('Not implemented');
-};
+const unbracketTag = (str) => str.replace(/<|>/g, '');
 
 /**
  * Extracts e-mails from single string with e-mails list delimited by semicolons
