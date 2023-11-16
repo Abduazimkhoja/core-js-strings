@@ -67,25 +67,7 @@ const getStringFromTemplate = (firstName, lastName) =>
   `Hello, ${firstName} ${lastName}!`;
 const extractNameFromTemplate = (str) => str.replace(/Hello, |!/g, '');
 const unbracketTag = (str) => str.replace(/<|>/g, '');
-
-/**
- * Extracts e-mails from single string with e-mails list delimited by semicolons
- *
- * @param {string} str - The input string.
- * @return {array} - The list of e-mails extracted from the string.
- *
- * @example
- *   'angus.young@gmail.com;brian.johnson@hotmail.com;bon.scott@yahoo.com'
- *   => [
- *      'angus.young@gmail.com',
- *      'brian.johnson@hotmail.com',
- *      'bon.scott@yahoo.com'
- *   ],
- *   'info@gmail.com' => ['info@gmail.com']
- */
-const extractEmails = (/* str */) => {
-  throw new Error('Not implemented');
-};
+const extractEmails = (str) => str.split(';');
 
 /**
  * Encode specified string with ROT13 cipher
