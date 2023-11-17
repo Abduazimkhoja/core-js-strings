@@ -68,28 +68,28 @@ const getStringFromTemplate = (firstName, lastName) =>
 const extractNameFromTemplate = (str) => str.replace(/Hello, |!/g, '');
 const unbracketTag = (str) => str.replace(/<|>/g, '');
 const extractEmails = (str) => str.split(';');
+const encodeToRot13 = (str) => {
+  return str
+    .split('')
+    .map((item) => {
+      const itemAscii = item.charCodeAt();
 
-/**
- * Encode specified string with ROT13 cipher
- * See details:  https://en.wikipedia.org/wiki/ROT13
- *
- * @param {string} str - The input string.
- * @return {string} - The ROT13 encoded string.
- *
- * @example
- *
- *   'hello' => 'uryyb'
- *   'Why did the chicken cross the road?' => 'Jul qvq gur puvpxra pebff gur ebnq?'
- *   'Gb trg gb gur bgure fvqr!' => 'To get to the other side!'
- *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
- *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
- *
- */
+      const isLetter =
+        (itemAscii > 64 && itemAscii < 91) ||
+        (itemAscii > 96 && itemAscii < 123);
 
-const encodeToRot13 = (/* str */) => {
-  throw new Error('Not implemented');
+      if (!isLetter) return item;
+
+      const itemAsciiDiapason =
+        (itemAscii <= 90 && itemAscii + 13 > 90) ||
+        (itemAscii <= 122 && itemAscii + 13 > 122);
+
+      return itemAsciiDiapason
+        ? String.fromCharCode(itemAscii - 13)
+        : String.fromCharCode(itemAscii + 13);
+    })
+    .join('');
 };
-
 const getCardId = (value) =>
   [
     'A♣',
